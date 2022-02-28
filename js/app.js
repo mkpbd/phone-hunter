@@ -40,7 +40,7 @@ const displayMobileData = async (datas)=>{
           <div class="card-body text-center">
             <h5 class="card-title title-font-face text-center">${data.phone_name}</h5>
             <h5 class="card-title title-font-face text-center">${data.brand}</h5>
-            <button type="button" class="btn btn-outline-primary text-center">View Details <i class="fa-solid fa-eye mx-2"></i></button>
+            <button type="button" class="btn btn-outline-primary text-center" onclick="showMobileDetails('${data.slug}')">View Details <i class="fa-solid fa-eye mx-2"></i></button>
           </div>
         </div>
     
@@ -49,14 +49,89 @@ const displayMobileData = async (datas)=>{
       //  console.log(div)
         showAllMobileByParentGridId.appendChild(div);
     });
- 
 
     
-    
-
-
- 
-
-    
-    console.log(mobileDataArray);
+   // console.log(mobileDataArray);
 }
+
+
+    
+    /*************===================== Show Mobile Details ===================*******************/
+
+
+    const showMobileDetails = async(slug)=>{
+
+        try{
+            //get mobile details by slug Id
+            const detailsApiUrl = await fetch(`https://openapi.programming-hero.com/api/phone/${slug}`);
+            // convert data json format to javascrit object
+            const dataUrlJson = await detailsApiUrl.json();
+
+            //console.log(dataUrlJson);
+            phoneDetailsDisplayShow(dataUrlJson.data);
+
+        }catch(error){
+
+            console.log(error);
+        }
+      //  console.log(slug)
+    }
+    
+    // prduct detials show
+    const phoneDetailsDisplayShow = details =>{
+       
+        const getParentId = document.getElementById('phone-details-show');
+        
+        getParentId.innerHTML = `
+        <div class="card shadow p-3 mb-5 bg-body rounded border-0" >
+        <div class="row g-4">
+          <div class="col-md-4">
+            <img src="${details.image}" class="img-fluid rounded-start w-100" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title title-font-face">Name: ${details.name}</h5>
+                <h6 class="card-text title-font-face brand-font-size">Barand Name: ${details.brand}</h6>
+                <h6 class="card-text title-font-face release-font-size">${details.releaseDate != '' ? details.releaseDate: 'Release Date not found'}</h6>
+                
+                <div class="row">
+                        <div class="col-md-4">
+                            <span class="icon icon-size"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                            <div>${details.mainFeatures.displaySize}</div>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="icon icon-size"><i class="fa-solid fa-camera"></i></span>
+                            <div> ${details.mainFeatures.chipSet}   </div>
+
+
+                        </div>
+                        <div class="col-md-4">
+                            <span class="icon icon-size"><i class="fa-solid fa-battery-full"></i></span>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="icon icon-size"><i class="fa-brands fa-android"></i></span>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="icon icon-size"><i class="fa-solid fa-memory"></i></span>
+                            <div> ${details.mainFeatures.memory} </div>
+                        </div>
+                      
+                        <div class="col-md-4">
+                            <span class="icon icon-size"><i class="fa-solid fa-hard-drive"></i></span>
+                            <div> ${details.mainFeatures.storage} </div>
+                        </div>
+                      
+                </div>
+           
+            </div>
+          </div>
+        </div>
+      </div>
+        
+        `;
+
+          //  console.log(details.mainFeatures.storage);
+     //  const getProductDetails = document.getElementById('')
+       
+        console.log(details);
+    }
