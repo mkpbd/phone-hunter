@@ -82,6 +82,12 @@ const displayMobileData = async (datas)=>{
        
         const getParentId = document.getElementById('phone-details-show');
         
+        const convertToArraySensor = Array.from(details.mainFeatures.sensors);
+        console.log(convertToArraySensor);
+
+        convertToArraySensor.forEach(e => console.log(e))
+
+        
         getParentId.innerHTML = `
         <div class="card shadow p-3 mb-5 bg-body rounded border-0" >
         <div class="row g-4">
@@ -109,7 +115,13 @@ const displayMobileData = async (datas)=>{
                             <span class="icon icon-size"><i class="fa-solid fa-battery-full"></i></span>
                         </div>
                         <div class="col-md-4">
-                            <span class="icon icon-size"><i class="fa-brands fa-android"></i></span>
+                            <img src="./images/sensor.png"/> <br>
+                            <ul class="list-group">
+                            <li class="list-group-item"> ${ details.mainFeatures.sensors.join(" ")}</li>
+                               
+                            </ul>
+                         
+                          
                         </div>
                         <div class="col-md-4">
                             <span class="icon icon-size"><i class="fa-solid fa-memory"></i></span>
