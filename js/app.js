@@ -38,8 +38,8 @@ const displayMobileData = async (datas)=>{
         <div class="card shadow p-3 mb-5 bg-body rounded border-0">
           <img src="${data.image}" alt="...">
           <div class="card-body">
-            <h5 class="card-title">${data.phone_name}</h5>
-            <h5 class="card-title">${data.brand}</h5>
+            <h5 class="card-title title-font-face text-center">${data.phone_name}</h5>
+            <h5 class="card-title title-font-face text-center">${data.brand}</h5>
           </div>
         </div>
     
