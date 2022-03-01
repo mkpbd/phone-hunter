@@ -101,24 +101,24 @@ const displayMobileData = async (datas)=>{
                 <h6 class="card-text title-font-face release-font-size">${details.releaseDate != '' ? details.releaseDate: 'Release Date not found'}</h6>
                 
                 <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 px-2">
                             <span class="icon icon-size"><i class="fa-solid fa-mobile-screen-button"></i></span>
-                            <div>${details.mainFeatures.displaySize}</div>
+                            <h6 style="color:#000;">${details.mainFeatures.displaySize}</h6>
                         </div>
 
                         <div class="col-md-6">
                             <span class="icon icon-size"><i class="fa-solid fa-camera"></i></span>
-                            <div> ${details.mainFeatures.chipSet}   </div>
+                            <h6 style="color:#000;"> ${details.mainFeatures.chipSet}   </h6>
                         </div>
 
                         <div class="col-md-6">
                           <span class="icon icon-size"><i class="fa-solid fa-memory"></i></span>
-                          <div> ${details.mainFeatures.memory} </div>
+                          <h6 style="color:#000;"> ${details.mainFeatures.memory} </h6>
                        </div>
                   
                       <div class="col-md-6">
                           <span class="icon icon-size"><i class="fa-solid fa-hard-drive"></i></span>
-                          <div> ${details.mainFeatures.storage} </div>
+                          <h6 style="color:#000;"> ${details.mainFeatures.storage} </h6>
                       </div>
                       <div class="col-md-12">
                         <img src="./images/sensor.png"/> <br>
@@ -133,8 +133,11 @@ const displayMobileData = async (datas)=>{
                       
                 </div>
              <!-- ========== others information =============== -->
-                <div class="com-md-10 col-sm-12">
-                    <h2>other information </h2>
+                <div class="com-md-12 col-sm-12">
+                      <h4 class="text-center my-5">Other Information </h4>
+                   <div class="row" id="show-others">
+                       <!-- show others Information --->
+                   </div>
                 </div>
                 
            
@@ -187,5 +190,33 @@ const displayMobileData = async (datas)=>{
 
     const displayOthersDataShow = others => {
 
+      // other information show
+      const getOthers = document.getElementById('show-others');
       console.log(others);
+
+
+      getOthers.innerHTML = `
+      <div class="col-md-3">
+      <img src="./images/wifi.png"/ class="img-thumbnail">
+      <h6 class="mt-3" style="color:#000;">WLAN :  ${(others?.WLAN? others.WLAN :'Not Found')} </h6>
+   </div>
+   <div class="col-md-3">
+      <img src="./images/bluethood.png"/ class="img-thumbnail">
+      <h6 style="color:#000;"> Bluetooth :  ${others?.Bluetooth ? others.Bluetooth: 'Not Found'} </h6>
+   </div>
+   <div class="col-md-3">
+      <img src="./images/radio.png"/ class="img-thumbnail">
+      <h6 style="color:#000;"> GPS : ${others?.GPS ? others.GPS: "Not Found"} </h6>
+   </div>
+   <div class="col-md-3">
+      <img src="./images/radio.png"/ class="img-thumbnail">
+      <h6 style="color:#000;"> NFC :  ${others?.NFC ? others.NFC : "Not Found"} </h6>
+   </div>
+
+   <div class="col-md-3">
+   <img src="./images/radio.png"/ class="img-thumbnail">
+   <h6 class="mt-3" style="color:#000;"> Radio :  ${others?.Radio ? others.Radio: "Not Found"} </h6>
+</div>
+      `;
+     
     }
