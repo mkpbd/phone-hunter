@@ -5,7 +5,14 @@
 const loadMoblieApi =  async()=>{
 
     try{
-        const apiUrl = await fetch(`https://openapi.programming-hero.com/api/phones?search=iphone`);
+        const inputField = document.getElementById('input-field');
+        const inputFieldValue = inputField.value.toLowerCase();
+        //clear Fields 
+        inputField.value = '';
+
+        console.log('input values = ', inputFieldValue)
+         const apiUrl = await fetch(`https://openapi.programming-hero.com/api/phones?search=${inputFieldValue}`);
+       // const apiUrl = await fetch(`https://openapi.programming-hero.com/api/phones?search=samsung`);
         const apiUrlData = await apiUrl.json();
 
         // console.log(apiUrlData);
@@ -16,22 +23,29 @@ const loadMoblieApi =  async()=>{
     }
 }
 
-loadMoblieApi();
+//loadMoblieApi();
 
 
 const displayMobileData = async (datas)=>{
    
     // parent Id 
     const showAllMobileByParentGridId = document.getElementById('show-all-phone');
-
+  // clear previus data 
+  showAllMobileByParentGridId.innerText = '';
     // get only mobile data from api 
     const mobileDataArray = datas.data;
     // array length 
     const mobileDataArrayLenght = mobileDataArray.length;
 
-    console.log(mobileDataArrayLenght);
+    if(mobileDataArray == null || mobileDataArrayLenght <= 0){
+     // alert("no mobile found");
+      showError();
+      return;
+    }
+
+    // console.log(mobileDataArrayLenght);
     let count =1;
-    let limit = 20;
+    let limit = filterLimitButton(0);
     mobileDataArray.forEach(data => {
     
    
@@ -55,8 +69,12 @@ const displayMobileData = async (datas)=>{
     
 
          // limit products Show 
-         if(count >=limit){
-          showMore
+         if(count >= limit){
+          const showMoreButton = document.getElementById('show-more');
+              showMoreButton.style.display = 'block';
+              showMoreButton.classList.remove('d-none');
+
+              document.getElementById('show-button').onclick = `${filterLimitButton(mobileDataArrayLenght)}`;
           return ;
         } 
          count++;
@@ -68,8 +86,10 @@ const displayMobileData = async (datas)=>{
 }
 
 // Filter option 
-  const filterLimitButton = (limit, data)=>{
-    
+  const filterLimitButton = (limit )=>{
+
+    // console.log(limit);
+    return (limit || 20)
   }
 
 // show More button 
@@ -240,3 +260,29 @@ const displayMobileData = async (datas)=>{
       `;
      
     }
+
+
+    // const show error method 
+
+  const showError = () => {
+    const showErrorMessage =   document.getElementById('show-error-message');
+  
+
+  const error =   `
+  <div class="col-md-8 mx-auto col-sm-10">
+    <div class="toast show  align-items-center w-100" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body w-100 d-block text-center">
+          <h2 class="text-center text-danger"> Sorray Mobile not found </h2>
+    </div>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+<div>
+  
+  `;
+
+
+    showErrorMessage.innerHTML = error;
+
+  }

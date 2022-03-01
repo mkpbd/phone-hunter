@@ -29,10 +29,15 @@
             <h2 class="txt-center text-center mt-5 text-uppercase shadow-sm p-3 ">Phone gunner</h2>
             <div class="col-sm-8 col-md-6 mx-auto py-5">
                 <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="button">Search</button>
+                    <input id="input-field" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="button" onclick="loadMoblieApi()">Search</button>
                   </form>
             </div>
+        </section>
+
+        <!-- show error messsage -->
+        <section class="row" id="show-error-message">
+            
         </section>
         <!-- phone show details area -->
         <section class="row" id="phone-details-show">
@@ -80,14 +85,18 @@
 
         </section>
 
-        <section id="show-more"></section>
+        
 
         <!-- phone grid area -->
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="show-all-phone">
 
           </div>
 
+          <!-- show more button  -->
 
+          <section id="show-more" class="text-center py-5 d-none">
+            <button class="btn btn-lg btn-secondary" id="show-button">Show more</button>
+        </section>
     </main>
 
 
@@ -105,3 +114,5 @@
     <script src="./js/app.js"></script>
   </body>
 </html>
+
+
