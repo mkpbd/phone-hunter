@@ -26,15 +26,19 @@ const displayMobileData = async (datas)=>{
 
     // get only mobile data from api 
     const mobileDataArray = datas.data;
+    // array length 
+    const mobileDataArrayLenght = mobileDataArray.length;
 
+    console.log(mobileDataArrayLenght);
+    let count =1;
+    let limit = 20;
     mobileDataArray.forEach(data => {
     
+   
      // create child elements div
     const div = document.createElement('div');
     div.setAttribute('class', 'col');
-
         div.innerHTML = `
-   
         <div class="card shadow p-3 mb-5 bg-body rounded border-0">
           <img src="${data.image}" alt="...">
           <div class="card-body text-center">
@@ -47,12 +51,28 @@ const displayMobileData = async (datas)=>{
         `
 
       //  console.log(div)
+
+    
+
+         // limit products Show 
+         if(count >=limit){
+          showMore
+          return ;
+        } 
+         count++;
         showAllMobileByParentGridId.appendChild(div);
     });
 
     
    // console.log(mobileDataArray);
 }
+
+// Filter option 
+  const filterLimitButton = (limit, data)=>{
+    
+  }
+
+// show More button 
 
 
     
@@ -196,27 +216,27 @@ const displayMobileData = async (datas)=>{
 
 
       getOthers.innerHTML = `
-      <div class="col-md-3">
-      <img src="./images/wifi.png"/ class="img-thumbnail">
-      <h6 class="mt-3" style="color:#000;">WLAN :  ${(others?.WLAN? others.WLAN :'Not Found')} </h6>
-   </div>
-   <div class="col-md-3">
-      <img src="./images/bluethood.png"/ class="img-thumbnail">
-      <h6 style="color:#000;"> Bluetooth :  ${others?.Bluetooth ? others.Bluetooth: 'Not Found'} </h6>
-   </div>
-   <div class="col-md-3">
-      <img src="./images/radio.png"/ class="img-thumbnail">
-      <h6 style="color:#000;"> GPS : ${others?.GPS ? others.GPS: "Not Found"} </h6>
-   </div>
-   <div class="col-md-3">
-      <img src="./images/radio.png"/ class="img-thumbnail">
-      <h6 style="color:#000;"> NFC :  ${others?.NFC ? others.NFC : "Not Found"} </h6>
-   </div>
+          <div class="col-md-4">
+                <img src="./images/wifi.png"/ class="img-thumbnail">
+                <h6 class="mt-3" style="color:#000;">WLAN :  ${(others?.WLAN? others.WLAN :'Not Found')} </h6>
+          </div>
+          <div class="col-md-4">
+              <img src="./images/bluethood.png"/ class="img-thumbnail">
+              <h6 style="color:#000;"> Bluetooth :  ${others?.Bluetooth ? others.Bluetooth: 'Not Found'} </h6>
+          </div>
+          <div class="col-md-4">
+              <img src="./images/radio.png"/ class="img-thumbnail">
+              <h6 style="color:#000;"> GPS : ${others?.GPS ? others.GPS: "Not Found"} </h6>
+          </div>
+          <div class="col-md-4">
+              <img src="./images/radio.png"/ class="img-thumbnail">
+              <h6 style="color:#000;"> NFC :  ${others?.NFC ? others.NFC : "Not Found"} </h6>
+          </div>
 
-   <div class="col-md-3">
-   <img src="./images/radio.png"/ class="img-thumbnail">
-   <h6 class="mt-3" style="color:#000;"> Radio :  ${others?.Radio ? others.Radio: "Not Found"} </h6>
-</div>
+          <div class="col-md-4">
+            <img src="./images/radio.png"/ class="img-thumbnail">
+            <h6 class="mt-3" style="color:#000;"> Radio :  ${others?.Radio ? others.Radio: "Not Found"} </h6>
+        </div>
       `;
      
     }
