@@ -105,41 +105,42 @@ const displayMobileData = async (datas)=>{
                             <span class="icon icon-size"><i class="fa-solid fa-mobile-screen-button"></i></span>
                             <div>${details.mainFeatures.displaySize}</div>
                         </div>
+
                         <div class="col-md-6">
                             <span class="icon icon-size"><i class="fa-solid fa-camera"></i></span>
                             <div> ${details.mainFeatures.chipSet}   </div>
-
-
                         </div>
 
                         <div class="col-md-6">
-                        <span class="icon icon-size"><i class="fa-solid fa-memory"></i></span>
-                        <div> ${details.mainFeatures.memory} </div>
-                    </div>
+                          <span class="icon icon-size"><i class="fa-solid fa-memory"></i></span>
+                          <div> ${details.mainFeatures.memory} </div>
+                       </div>
                   
-                    <div class="col-md-6">
-                        <span class="icon icon-size"><i class="fa-solid fa-hard-drive"></i></span>
-                        <div> ${details.mainFeatures.storage} </div>
-                    </div>
-                        <div class="col-md-12">
-                            <img src="./images/sensor.png"/> <br>
-                            <ul class="list-group d-flex" id="sensor-data">
-                           <!-- <li class="list-group-item"> ${ details.mainFeatures.sensors.join(" ")}</li> -->
-                               
-                            </ul>
+                      <div class="col-md-6">
+                          <span class="icon icon-size"><i class="fa-solid fa-hard-drive"></i></span>
+                          <div> ${details.mainFeatures.storage} </div>
+                      </div>
+                      <div class="col-md-12">
+                        <img src="./images/sensor.png"/> <br>
+                        <ul class="list-group d-flex" id="sensor-data">
+                            <!-- <li class="list-group-item"> ${ details.mainFeatures.sensors.join(" ")}</li> -->
+                            
+                        </ul>
                          
                           
-                        </div>
+                      </div>
                     
                       
                 </div>
+             <!-- ========== others information =============== -->
+                <div class="com-md-10 col-sm-12">
+                    <h2>other information </h2>
+                </div>
+                
            
             </div>
           </div>
-          <!-- ========== others information =============== -->
-          <div class="com-md-10 col-sm-12">
-              <h2>other information </h2>
-          </div>
+          
         </div>
 
       </div>
