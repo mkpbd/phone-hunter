@@ -10,7 +10,7 @@ const loadMoblieApi =  async()=>{
         //clear Fields 
         inputField.value = '';
 
-        console.log('input values = ', inputFieldValue)
+        // console.log('input values = ', inputFieldValue)
          const apiUrl = await fetch(`https://openapi.programming-hero.com/api/phones?search=${inputFieldValue}`);
        // const apiUrl = await fetch(`https://openapi.programming-hero.com/api/phones?search=samsung`);
         const apiUrlData = await apiUrl.json();
@@ -45,9 +45,10 @@ const displayMobileData = async (datas)=>{
     }
 
     // console.log(mobileDataArrayLenght);
-    let count =1;
-    let limit = filterLimitButton(0);
-    mobileDataArray.forEach(data => {
+    // let count =1;
+    // let limit = filterLimitButton(0);
+
+    mobileDataArray.slice(0,12).forEach(data => {
     
    
      // create child elements div
@@ -68,29 +69,41 @@ const displayMobileData = async (datas)=>{
       //  console.log(div)
 
     
+      // show filter
+
+
 
          // limit products Show 
-         if(count >= limit){
-          const showMoreButton = document.getElementById('show-more');
-              showMoreButton.style.display = 'block';
-              showMoreButton.classList.remove('d-none');
+        //  count++;
+        //  if(count >= limit){
+        //   const showMoreButton = document.getElementById('show-more');
+        //       showMoreButton.style.display = 'block';
+        //       showMoreButton.classList.remove('d-none');
 
-              document.getElementById('show-button').onclick = `${filterLimitButton(mobileDataArrayLenght)}`;
-          return ;
-        } 
-         count++;
+        //       document.getElementById('show-button').onclick = `${filterLimitButton(mobileDataArrayLenght)}`;
+        // //  return ;
+        // } 
+  
         showAllMobileByParentGridId.appendChild(div);
     });
 
+    filterFunction();
     
    // console.log(mobileDataArray);
+
+   // loadmore button 
+   loadMoreButtonShow();
 }
+
+
+
+
 
 // Filter option 
   const filterLimitButton = (limit )=>{
 
-    // console.log(limit);
-    return (limit || 20)
+     console.log(limit);
+    return (limit || 10)
   }
 
 // show More button 
@@ -205,6 +218,8 @@ const displayMobileData = async (datas)=>{
       // call others Data show 
       displayOthersDataShow(details.others);
         console.log(details);
+
+        
     }
 
 
@@ -302,3 +317,32 @@ const displayMobileData = async (datas)=>{
 
   }
 
+
+
+  // filter whork heare 
+
+const filterFunction = () => {
+
+  // const value =  document.getElementById('show-all-phone');
+  // const convetArray = Array.from(value.children);
+  // console.log("ide value", convetArray.slice(0,5))
+  // value.innerText = '';
+  // for( const key of convetArray.slice(0,12)){
+    
+  //   //console.log(key, convetArray[key]);
+  //   value.appendChild(key);
+
+  // }
+}
+
+
+
+const loadMoreButtonShow = ()=> {
+  const showAllPhone =  document.getElementById('show-all-phone');
+  const convetArray = Array.from(showAllPhone.children);
+  console.log(convetArray.length);
+  const loadMore = document.getElementById('show-more');
+
+
+
+}
