@@ -40,6 +40,7 @@ const displayMobileData = async (datas)=>{
     if(mobileDataArray == null || mobileDataArrayLenght <= 0){
      // alert("no mobile found");
       showError();
+      phoneDetailsDisplayShow(null);
       return;
     }
 
@@ -121,7 +122,11 @@ const displayMobileData = async (datas)=>{
     const phoneDetailsDisplayShow = details =>{
        
         const getParentId = document.getElementById('phone-details-show');
-        
+        if(details == null){
+          getParentId.innerText = '';
+          return;
+        }
+         
         const convertToArraySensor = Array.from(details.mainFeatures.sensors);
         //console.log(convertToArraySensor);
 
