@@ -39,7 +39,7 @@ const displayMobileData = async (datas)=>{
 
     if(mobileDataArray == null || mobileDataArrayLenght <= 0){
      // alert("no mobile found");
-      showError();
+      showError('show');
       phoneDetailsDisplayShow(null);
       return;
     }
@@ -266,16 +266,22 @@ const displayMobileData = async (datas)=>{
      
     }
 
+    
+  // clear error message 
+
+
+
 
     // const show error method 
 
-  const showError = () => {
+  const showError = (displayShow) => {
     const showErrorMessage =   document.getElementById('show-error-message');
+
   
 
   const error =   `
   <div class="col-md-8 mx-auto col-sm-10">
-    <div class="toast show  align-items-center w-100" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast ${displayShow} align-items-center w-100" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
       <div class="toast-body w-100 d-block text-center">
           <h2 class="text-center text-danger"> Sorray Mobile not found </h2>
@@ -289,5 +295,10 @@ const displayMobileData = async (datas)=>{
 
 
     showErrorMessage.innerHTML = error;
+    setTimeout((e) => {
+      showErrorMessage.innerText = '';
+     // console.log("hello time out")
+    },1500);
 
   }
+
