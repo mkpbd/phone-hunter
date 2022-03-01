@@ -144,13 +144,18 @@ const displayMobileData = async (datas)=>{
 
           //  console.log(details.mainFeatures.storage);
      //  const getProductDetails = document.getElementById('')
-       
+
+
+       // call Sensor information 
        displaySensorData(convertToArraySensor);
+
+      // call others Data show 
+      displayOthersDataShow(details.others);
         console.log(details);
     }
 
 
-    /********=============== Sensonr  Method =====================*/
+    /********=============== Sensonr  Method show data in display  =====================*/
 
 
     const displaySensorData = async data => {
@@ -171,4 +176,11 @@ const displayMobileData = async (datas)=>{
         })
      
 
+    }
+
+    /*******================ others data show =====================*********** */
+
+    const displayOthersDataShow = others => {
+
+      console.log(others);
     }

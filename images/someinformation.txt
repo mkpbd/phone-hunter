@@ -1,0 +1,5 @@
+usb  -> font awosme
+blutooth -> font awosome
+gps -> font awesmoe
+
+material-icons
