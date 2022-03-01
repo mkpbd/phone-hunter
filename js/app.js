@@ -83,9 +83,9 @@ const displayMobileData = async (datas)=>{
         const getParentId = document.getElementById('phone-details-show');
         
         const convertToArraySensor = Array.from(details.mainFeatures.sensors);
-        console.log(convertToArraySensor);
+        //console.log(convertToArraySensor);
 
-        convertToArraySensor.forEach(e => console.log(e))
+       // convertToArraySensor.forEach(e => console.log(e))
 
         
         getParentId.innerHTML = `
@@ -116,8 +116,8 @@ const displayMobileData = async (datas)=>{
                         </div>
                         <div class="col-md-4">
                             <img src="./images/sensor.png"/> <br>
-                            <ul class="list-group">
-                            <li class="list-group-item"> ${ details.mainFeatures.sensors.join(" ")}</li>
+                            <ul class="list-group" id="sensor-data">
+                           <!-- <li class="list-group-item"> ${ details.mainFeatures.sensors.join(" ")}</li> -->
                                
                             </ul>
                          
@@ -145,5 +145,30 @@ const displayMobileData = async (datas)=>{
           //  console.log(details.mainFeatures.storage);
      //  const getProductDetails = document.getElementById('')
        
+       displaySensorData(convertToArraySensor);
         console.log(details);
+    }
+
+
+    /********=============== Sensonr  Method =====================*/
+
+
+    const displaySensorData = async data => {
+
+        const ulSensor = document.getElementById('sensor-data');
+
+        data.forEach(x => {
+             //li Element Create 
+          const li = document.createElement('li');
+
+          // class  attribute 
+          li.setAttribute('class', 'list-group-item');
+
+          li.innerText = x;
+
+          ulSensor.appendChild(li);
+
+        })
+     
+
     }
