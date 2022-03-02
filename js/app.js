@@ -1,6 +1,10 @@
 const allProduct = document.getElementById('show-all-phone');
 const productDeatils = document.getElementById('phone-details-show');
 
+//global Arraylength
+let totalProductArrayLength  = 0;
+let totalProduct = [];
+
 // console.log("phone gunner")
 
 /*****================ Load moblie product by search ===================*** */
@@ -68,6 +72,11 @@ const displayMobileData = async (datas)=>{
     // array length 
     const mobileDataArrayLenght = mobileDataArray.length;
 
+    // assign Globally Total array length 
+      totalProductArrayLength = mobileDataArrayLenght;
+      // assign  globally total product 
+      totalProduct = mobileDataArray;
+
     if(mobileDataArray == null || mobileDataArrayLenght <= 0){
      // alert("no mobile found");
       showError('show');
@@ -79,54 +88,73 @@ const displayMobileData = async (datas)=>{
     // let count =1;
     // let limit = filterLimitButton(0);
 
-    mobileDataArray.slice(0,12).forEach(data => {
+    showMoreDataByProductLength(mobileDataArray,   20, showAllMobileByParentGridId);
+    filterFunction();
+   
+    // console.log(mobileDataArray);
+  
+    // loadmore button 
+    loadMoreButtonShow(mobileDataArrayLenght);
+
+  }
+
+
+
+// Show More Data By array length
+
+const showMoreDataByProductLength = (mobileDataArray, end = 20, showAllMobileByParentGridId) => {
+
+  mobileDataArray.slice(0,end).forEach(data => {
     
    
-     // create child elements div
-    const div = document.createElement('div');
-    div.setAttribute('class', 'col');
-        div.innerHTML = `
-        <div class="card shadow p-3 mb-5 bg-body rounded border-0">
-          <img src="${data.image}" alt="...">
-          <div class="card-body text-center">
-            <h5 class="card-title title-font-face text-center">${data.phone_name}</h5>
-            <h5 class="card-title title-font-face text-center">${data.brand}</h5>
-            <button type="button" class="btn btn-outline-primary text-center" onclick="showMobileDetails('${data.slug}')">View Details <i class="fa-solid fa-eye mx-2"></i></button>
-          </div>
-        </div>
-    
-        `
+    // create child elements div
+   const div = document.createElement('div');
+   div.setAttribute('class', 'col');
+       div.innerHTML = `
+       <div class="card shadow p-3 mb-5 bg-body rounded border-0">
+         <img src="${data.image}" alt="...">
+         <div class="card-body text-center">
+           <h5 class="card-title title-font-face text-center">${data.phone_name}</h5>
+           <h5 class="card-title title-font-face text-center">${data.brand}</h5>
+           <button type="button" class="btn btn-outline-primary text-center" onclick="showMobileDetails('${data.slug}')">View Details <i class="fa-solid fa-eye mx-2"></i></button>
+         </div>
+       </div>
+   
+       `
 
-      //  console.log(div)
+     //  console.log(div)
 
-    
-      // show filter
+   
+     // show filter
 
 
 
-         // limit products Show 
-        //  count++;
-        //  if(count >= limit){
-        //   const showMoreButton = document.getElementById('show-more');
-        //       showMoreButton.style.display = 'block';
-        //       showMoreButton.classList.remove('d-none');
+        // limit products Show 
+       //  count++;
+       //  if(count >= limit){
+       //   const showMoreButton = document.getElementById('show-more');
+       //       showMoreButton.style.display = 'block';
+       //       showMoreButton.classList.remove('d-none');
 
-        //       document.getElementById('show-button').onclick = `${filterLimitButton(mobileDataArrayLenght)}`;
-        // //  return ;
-        // } 
-  
-        showAllMobileByParentGridId.appendChild(div);
-    });
+       //       document.getElementById('show-button').onclick = `${filterLimitButton(mobileDataArrayLenght)}`;
+       // //  return ;
+       // } 
+ 
+       showAllMobileByParentGridId.appendChild(div);
+   });
 
-    filterFunction();
-    
-   // console.log(mobileDataArray);
 
-   // loadmore button 
-   loadMoreButtonShow();
 }
 
 
+// show All product by load more button 
+
+document.getElementById('show-button').addEventListener('click',function(event){
+  allProduct.innerText = '';
+  showMoreDataByProductLength(totalProduct, totalProductArrayLength,allProduct);
+  loadMoreButtonShow(totalProductArrayLength);
+
+})
 
 
 
@@ -368,11 +396,25 @@ const filterFunction = () => {
 
 
 
-const loadMoreButtonShow = ()=> {
-  const showAllPhone =  document.getElementById('show-all-phone');
-  const convetArray = Array.from(showAllPhone.children);
-  console.log(convetArray.length);
+const loadMoreButtonShow = (productLength)=> {
   const loadMore = document.getElementById('show-more');
+ const allProduct =  document.getElementById('show-all-phone');
+  //const cheackMobleProductLength = Array.from(allProduct);
+  if(productLength > 20){
+    //loadMore.style.display = 'block'
+    loadMore.classList.remove('d-none')
+ 
+  }
+  else{
+    loadMore.classList.add('d-none')
+  }
+
+  if(productLength === allProduct.childElementCount){
+    loadMore.classList.add('d-none');
+  }
+  
+  console.log("Length Of array" ,productLength)
+  console.log('show html array length ', allProduct.childElementCount)
 
 
 
