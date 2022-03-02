@@ -18,9 +18,7 @@ const loadMoblieApi =  async()=>{
         inputField.value = '';
         // validation Method
 
-         // previou loader;
-
-         snipperLoad();
+         
 
        // debugger
         if(inputFieldValue.trim() == ''){
@@ -41,7 +39,9 @@ const loadMoblieApi =  async()=>{
     
           return;
         }
+        // previou loader;
 
+        snipperLoad();
        
 
         // console.log('input values = ', inputFieldValue)
@@ -58,6 +58,22 @@ const loadMoblieApi =  async()=>{
 }
 
 //loadMoblieApi();
+
+
+// key press event 
+
+document.getElementById('input-field').addEventListener('keypress', function(event){
+ 
+
+  console.log(event.keyCode == 13)
+ if(event.key == "Enter"){
+  loadMoblieApi();
+  event.preventDefault();
+ }
+//  event.preventDefault();
+  
+
+})
 
 /*********** --------- snipper ---------------************ */
 
