@@ -1,3 +1,6 @@
+const allProduct = document.getElementById('show-all-phone');
+const productDeatils = document.getElementById('phone-details-show');
+
 // console.log("phone gunner")
 
 /*****================ Load moblie product by search ===================*** */
@@ -9,6 +12,32 @@ const loadMoblieApi =  async()=>{
         const inputFieldValue = inputField.value.toLowerCase();
         //clear Fields 
         inputField.value = '';
+        // validation Method
+
+       // debugger
+        if(inputFieldValue.trim() == ''){
+      
+
+          showError('show', "Plase Enter your Product Name");
+          //Clear all fields
+          allProduct.innerText = '';
+          // cleaer produce deatisl
+          productDeatils.innerText = '';
+          return;
+        }
+    
+        // cheack input file is not nummber
+        if(!isNaN(inputFieldValue)){
+    
+          // Show Error message 
+           showError('show', "Number are not allowed");
+                //Clear all fields
+          allProduct.innerText = '';
+          // cleaer produce deatisl
+          productDeatils.innerText = '';
+    
+          return;
+        }
 
         // console.log('input values = ', inputFieldValue)
          const apiUrl = await fetch(`https://openapi.programming-hero.com/api/phones?search=${inputFieldValue}`);
@@ -26,6 +55,8 @@ const loadMoblieApi =  async()=>{
 //loadMoblieApi();
 
 
+
+/********** ============ display mobile data in html Page ======================************* */
 const displayMobileData = async (datas)=>{
    
     // parent Id 
@@ -289,7 +320,7 @@ const displayMobileData = async (datas)=>{
 
     // const show error method 
 
-  const showError = (displayShow) => {
+  const showError = (displayShow, message = "Sorry your search product not found !!") => {
     const showErrorMessage =   document.getElementById('show-error-message');
 
   
@@ -299,7 +330,7 @@ const displayMobileData = async (datas)=>{
     <div class="toast ${displayShow} align-items-center w-100" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
       <div class="toast-body w-100 d-block text-center">
-          <h2 class="text-center text-danger"> Sorray Mobile not found </h2>
+          <h2 class="text-center text-danger"> ${message} </h2>
     </div>
       <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
@@ -313,7 +344,7 @@ const displayMobileData = async (datas)=>{
     setTimeout((e) => {
       showErrorMessage.innerText = '';
      // console.log("hello time out")
-    },1500);
+    },2000);
 
   }
 
