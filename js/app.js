@@ -275,7 +275,7 @@ document.getElementById('show-button').addEventListener('click',function(event){
                     <div class="col-md-8 mx-auto">
                       <h5 class="card-title title-font-face">Name: ${details.name}</h5>
                       <h6 class="card-text title-font-face brand-font-size">Barand Name: ${details.brand}</h6>
-                      <h6 class="card-text title-font-face release-font-size">${details.releaseDate != '' ? details.releaseDate: 'Release Date not found'}</h6>
+                      <h6 class="card-text title-font-face release-font-size">Release  Date : ${details.releaseDate != '' ? details.releaseDate: ' No Release Date found'}</h6>
 
                     </div>
 
