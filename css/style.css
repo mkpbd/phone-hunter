@@ -4,6 +4,7 @@ body{
     background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
 }
 
+
 /* .card{
     background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
 } */
@@ -53,4 +54,10 @@ body{
   background: -webkit-linear-gradient(rgb(58, 48, 153), rgb(22, 14, 56));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.icon-sizes{
+    font-size: 60px;
+    margin-bottom: 30px;
+    color: #3c9cd9;
 }

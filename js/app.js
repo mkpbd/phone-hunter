@@ -210,17 +210,18 @@ document.getElementById('show-button').addEventListener('click',function(event){
   allProduct.innerText = '';
   showMoreDataByProductLength(totalProduct, totalProductArrayLength,allProduct);
   loadMoreButtonShow(totalProductArrayLength);
+  //document.body.style.scrollBehavior = 'smooth';
 
 })
 
 
 
 // Filter option 
-  const filterLimitButton = (limit )=>{
+  // const filterLimitButton = (limit )=>{
 
-     console.log(limit);
-    return (limit || 10)
-  }
+  //    console.log(limit);
+  //   return (limit || 10)
+  // }
 
 // show More button 
 
@@ -270,9 +271,15 @@ document.getElementById('show-button').addEventListener('click',function(event){
           </div>
           <div class="col-md-8">
             <div class="card-body">
-                <h5 class="card-title title-font-face">Name: ${details.name}</h5>
-                <h6 class="card-text title-font-face brand-font-size">Barand Name: ${details.brand}</h6>
-                <h6 class="card-text title-font-face release-font-size">${details.releaseDate != '' ? details.releaseDate: 'Release Date not found'}</h6>
+                <div class="row"> 
+                    <div class="col-md-8 mx-auto">
+                      <h5 class="card-title title-font-face">Name: ${details.name}</h5>
+                      <h6 class="card-text title-font-face brand-font-size">Barand Name: ${details.brand}</h6>
+                      <h6 class="card-text title-font-face release-font-size">${details.releaseDate != '' ? details.releaseDate: 'Release Date not found'}</h6>
+
+                    </div>
+
+                </div>
                 
                 <div class="row">
                         <div class="col-md-6 px-2">
@@ -294,8 +301,8 @@ document.getElementById('show-button').addEventListener('click',function(event){
                           <span class="icon icon-size"><i class="fa-solid fa-hard-drive"></i></span>
                           <h6 style="color:#000;"> ${details.mainFeatures.storage} </h6>
                       </div>
-                      <div class="col-md-12">
-                        <img src="./images/sensor.png"/> <br>
+                      <div class="col-md-10 mx-auot my-3">
+                        <img class="d-block mx-auto" src="./images/sansor1.png"/> <br>
                         <ul class="list-group d-flex" id="sensor-data">
                             <!-- <li class="list-group-item"> ${ details.mainFeatures.sensors.join(" ")}</li> -->
                             
@@ -308,7 +315,8 @@ document.getElementById('show-button').addEventListener('click',function(event){
                 </div>
              <!-- ========== others information =============== -->
                 <div class="com-md-12 col-sm-12">
-                      <h4 class="text-center my-5">Other Information </h4>
+                      <h4 class="text-center my-5 font-monospace fw-bolder h1">Other Information </h4>
+                     
                    <div class="row" id="show-others">
                        <!-- show others Information --->
                    </div>
@@ -373,24 +381,30 @@ document.getElementById('show-button').addEventListener('click',function(event){
 
       getOthers.innerHTML = `
           <div class="col-md-4">
-                <img src="./images/wifi.png"/ class="img-thumbnail">
+                <!-- <img src="./images/wifi.png"/ class="img-thumbnail"> -->
+
+                <i class="material-icons large icon-sizes">network_wifi</i>
                 <h6 class="mt-3" style="color:#000;">WLAN :  ${(others?.WLAN? others.WLAN :'Not Found')} </h6>
           </div>
           <div class="col-md-4">
-              <img src="./images/bluethood.png"/ class="img-thumbnail">
+             <!-- <img src="./images/bluethood.png"/ class="img-thumbnail"> -->
+             <i class="material-icons large icon-sizes">bluetooth</i>
               <h6 style="color:#000;"> Bluetooth :  ${others?.Bluetooth ? others.Bluetooth: 'Not Found'} </h6>
           </div>
           <div class="col-md-4">
-              <img src="./images/radio.png"/ class="img-thumbnail">
+             <!-- <img src="./images/radio.png"/ class="img-thumbnail"> !-->
+             <i class="material-icons large icon-sizes">gps_fixed</i>
               <h6 style="color:#000;"> GPS : ${others?.GPS ? others.GPS: "Not Found"} </h6>
           </div>
           <div class="col-md-4">
-              <img src="./images/radio.png"/ class="img-thumbnail">
+             <!-- <img src="./images/radio.png"/ class="img-thumbnail"> !-->
+             <i class="material-icons large icon-sizes">nfc</i>
               <h6 style="color:#000;"> NFC :  ${others?.NFC ? others.NFC : "Not Found"} </h6>
           </div>
 
           <div class="col-md-4">
-            <img src="./images/radio.png"/ class="img-thumbnail">
+            <!--<img src="./images/radio.png"/ class="img-thumbnail"> -->
+            <i class="material-icons large icon-sizes">radio</i>
             <h6 class="mt-3" style="color:#000;"> Radio :  ${others?.Radio ? others.Radio: "Not Found"} </h6>
         </div>
       `;
@@ -407,6 +421,10 @@ document.getElementById('show-button').addEventListener('click',function(event){
 
   const showError = (displayShow, message = "Sorry your search product not found !!") => {
     const showErrorMessage =   document.getElementById('show-error-message');
+
+    // show more button none 
+
+      document.getElementById('show-more').classList.add('d-none');
 
   
 
@@ -454,23 +472,26 @@ const filterFunction = () => {
 
 
 const loadMoreButtonShow = (productLength)=> {
+ // debugger;
   const loadMore = document.getElementById('show-more');
  const allProduct =  document.getElementById('show-all-phone');
   //const cheackMobleProductLength = Array.from(allProduct);
   if(productLength > 20){
     //loadMore.style.display = 'block'
-    loadMore.classList.remove('d-none')
+    loadMore.classList.remove('d-none');
  
   }
   else{
-    loadMore.classList.add('d-none')
+    loadMore.classList.add('d-none');
+    //totalProductArrayLength = 0;
   }
 
+  
   if(productLength === allProduct.childElementCount){
     loadMore.classList.add('d-none');
   }
   
-  console.log("Length Of array" ,productLength)
+  // console.log("Length Of array" ,productLength)
   // console.log('show html array length ', allProduct.childElementCount)
 
 
