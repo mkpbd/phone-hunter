@@ -148,7 +148,7 @@ const showMoreDataByProductLength = (mobileDataArray, end = 20, showAllMobileByP
    const div = document.createElement('div');
    div.setAttribute('class', 'col');
        div.innerHTML = `
-       <div class="card shadow p-3 mb-5 bg-body rounded border-0">
+       <div class="card shadow p-3 mb-5 bg-body rounded-3 border-0">
          <img src="${data.image}" alt="...">
          <div class="card-body text-center">
            <h5 class="card-title title-font-face text-center">${data.phone_name}</h5>

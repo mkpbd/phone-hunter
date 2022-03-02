@@ -4,9 +4,9 @@ body{
     background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
 }
 
-.card{
+/* .card{
     background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
-}
+} */
 
 .title-font-face{
     font-family: 'Teko', sans-serif;
