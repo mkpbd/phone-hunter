@@ -471,7 +471,7 @@ const loadMoreButtonShow = (productLength)=> {
   }
   
   console.log("Length Of array" ,productLength)
-  console.log('show html array length ', allProduct.childElementCount)
+  // console.log('show html array length ', allProduct.childElementCount)
 
 
 

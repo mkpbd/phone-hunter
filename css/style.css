@@ -46,3 +46,11 @@ body{
     top:30%;
     left:30%;
 }
+
+
+.text-gradient{
+    font-size: 60px;
+  background: -webkit-linear-gradient(rgb(58, 48, 153), rgb(22, 14, 56));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
