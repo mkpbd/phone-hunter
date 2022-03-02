@@ -60,6 +60,26 @@ const loadMoblieApi =  async()=>{
 //loadMoblieApi();
 
 
+// default shome product Load html from 
+
+const defaultSomeProductLoad = async () => {
+  try{
+ 
+   const apiUrl = await fetch(`https://openapi.programming-hero.com/api/phones?search=samsung`);
+    const apiUrlData = await apiUrl.json();
+
+    // console.log(apiUrlData);
+      await displayMobileData(apiUrlData);
+
+}catch(error){
+    console.log(error);
+}
+
+}
+
+defaultSomeProductLoad();
+
+
 // key press event 
 
 document.getElementById('input-field').addEventListener('keypress', function(event){
@@ -409,7 +429,7 @@ document.getElementById('show-button').addEventListener('click',function(event){
     setTimeout((e) => {
       showErrorMessage.innerText = '';
      // console.log("hello time out")
-    },2000);
+    },3000);
 
   }
 
