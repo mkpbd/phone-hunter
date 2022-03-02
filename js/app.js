@@ -18,15 +18,17 @@ const loadMoblieApi =  async()=>{
         inputField.value = '';
         // validation Method
 
+         // previou loader;
+
+         snipperLoad();
+
        // debugger
         if(inputFieldValue.trim() == ''){
       
-
+          // show error message 
           showError('show', "Plase Enter your Product Name");
-          //Clear all fields
-          allProduct.innerText = '';
-          // cleaer produce deatisl
-          productDeatils.innerText = '';
+          // clear html content
+          clearFieldOrInnerText();
           return;
         }
     
@@ -35,13 +37,12 @@ const loadMoblieApi =  async()=>{
     
           // Show Error message 
            showError('show', "Number are not allowed");
-                //Clear all fields
-          allProduct.innerText = '';
-          // cleaer produce deatisl
-          productDeatils.innerText = '';
+           clearFieldOrInnerText();
     
           return;
         }
+
+       
 
         // console.log('input values = ', inputFieldValue)
          const apiUrl = await fetch(`https://openapi.programming-hero.com/api/phones?search=${inputFieldValue}`);
@@ -58,6 +59,26 @@ const loadMoblieApi =  async()=>{
 
 //loadMoblieApi();
 
+/*********** --------- snipper ---------------************ */
+
+const snipperLoad = () =>{
+  const spinner = document.getElementById('spinner');
+  spinner.classList.remove('d-none');
+  clearFieldOrInnerText();
+  setTimeout(e => {
+    spinner.classList.add('d-none');
+  }, 2000);
+
+}
+
+/********------------ Clear field  or inner text -----------************ */
+const clearFieldOrInnerText = () => {
+     //Clear all fields
+     allProduct.innerText = '';
+     // cleaer produce deatisl
+     productDeatils.innerText = '';
+
+}
 
 
 /********** ============ display mobile data in html Page ======================************* */
