@@ -24,7 +24,7 @@ const loadMoblieApi =  async()=>{
         if(inputFieldValue.trim() == ''){
       
           // show error message 
-          showError('show', "Plase Enter your Product Name");
+          showError('show', "Plase Enter your phone Name");
           // clear html content
           clearFieldOrInnerText();
           return;
@@ -142,11 +142,9 @@ const displayMobileData = async (datas)=>{
     }
 
     // console.log(mobileDataArrayLenght);
-    // let count =1;
-    // let limit = filterLimitButton(0);
 
     showMoreDataByProductLength(mobileDataArray,   20, showAllMobileByParentGridId);
-    filterFunction();
+
    
     // console.log(mobileDataArray);
   
@@ -182,20 +180,7 @@ const showMoreDataByProductLength = (mobileDataArray, end = 20, showAllMobileByP
      //  console.log(div)
 
    
-     // show filter
-
-
-
-        // limit products Show 
-       //  count++;
-       //  if(count >= limit){
-       //   const showMoreButton = document.getElementById('show-more');
-       //       showMoreButton.style.display = 'block';
-       //       showMoreButton.classList.remove('d-none');
-
-       //       document.getElementById('show-button').onclick = `${filterLimitButton(mobileDataArrayLenght)}`;
-       // //  return ;
-       // } 
+    
  
        showAllMobileByParentGridId.appendChild(div);
    });
@@ -215,15 +200,6 @@ document.getElementById('show-button').addEventListener('click',function(event){
 })
 
 
-
-// Filter option 
-  // const filterLimitButton = (limit )=>{
-
-  //    console.log(limit);
-  //   return (limit || 10)
-  // }
-
-// show More button 
 
 
     
@@ -273,9 +249,9 @@ document.getElementById('show-button').addEventListener('click',function(event){
             <div class="card-body">
                 <div class="row"> 
                     <div class="col-md-8 mx-auto">
-                      <h5 class="card-title title-font-face">Name: ${details.name}</h5>
-                      <h6 class="card-text title-font-face brand-font-size">Barand Name: ${details.brand}</h6>
-                      <h6 class="card-text title-font-face release-font-size">Release  Date : ${details.releaseDate != '' ? details.releaseDate: ' No Release Date found'}</h6>
+                      <h5 class="card-title title-font-face">Name: ${details?.name}</h5>
+                      <h6 class="card-text title-font-face brand-font-size">Barand Name: ${details?.brand}</h6>
+                      <h6 class="card-text title-font-face release-font-size">Release  Date : ${details?.releaseDate != '' ? details.releaseDate: ' No Release Date found'}</h6>
 
                     </div>
 
@@ -284,27 +260,28 @@ document.getElementById('show-button').addEventListener('click',function(event){
                 <div class="row">
                         <div class="col-md-6 px-2">
                             <span class="icon icon-size"><i class="fa-solid fa-mobile-screen-button"></i></span>
-                            <h6 style="color:#000;">${details.mainFeatures.displaySize}</h6>
+                            <h6 style="color:#000;">Display Size : ${details?.mainFeatures?.displaySize}</h6>
                         </div>
 
                         <div class="col-md-6">
-                            <span class="icon icon-size"><i class="fa-solid fa-camera"></i></span>
-                            <h6 style="color:#000;"> ${details.mainFeatures.chipSet}   </h6>
+                           <i class="material-icons large icon-sizes">memory</i>
+                            <h6 style="color:#000;"> Chip Set : ${details?.mainFeatures?.chipSet}   </h6>
                         </div>
 
                         <div class="col-md-6">
-                          <span class="icon icon-size"><i class="fa-solid fa-memory"></i></span>
-                          <h6 style="color:#000;"> ${details.mainFeatures.memory} </h6>
+                        <i class="material-icons large icon-sizes">sd_storage</i>
+                          <h6 style="color:#000;"> Memory :  ${details?.mainFeatures?.memory} </h6>
                        </div>
                   
                       <div class="col-md-6">
-                          <span class="icon icon-size"><i class="fa-solid fa-hard-drive"></i></span>
-                          <h6 style="color:#000;"> ${details.mainFeatures.storage} </h6>
+                         <i class="material-icons large icon-sizes">storage</i>
+                          <h6 style="color:#000;"> Storage : ${details?.mainFeatures?.storage} </h6>
                       </div>
                       <div class="col-md-10 mx-auot my-3">
                         <img class="d-block mx-auto" src="./images/sansor1.png"/> <br>
+                        <h3 class="mb-2 text-secondary font-monospace fw-bolder h2"> Sensors </h2>
                         <ul class="list-group d-flex" id="sensor-data">
-                            <!-- <li class="list-group-item"> ${ details.mainFeatures.sensors.join(" ")}</li> -->
+                            <!-- <li class="list-group-item"> ${ details?.mainFeatures?.sensors?.join(" ")}</li> -->
                             
                         </ul>
                          
@@ -315,7 +292,7 @@ document.getElementById('show-button').addEventListener('click',function(event){
                 </div>
              <!-- ========== others information =============== -->
                 <div class="com-md-12 col-sm-12">
-                      <h4 class="text-center my-5 font-monospace fw-bolder h1">Other Information </h4>
+                      <h4 class="my-4 font-monospace fw-bolder h2 text-secondary">Other Information </h4>
                      
                    <div class="row" id="show-others">
                        <!-- show others Information --->
@@ -382,7 +359,7 @@ document.getElementById('show-button').addEventListener('click',function(event){
       getOthers.innerHTML = `
           <div class="col-md-4">
                 <!-- <img src="./images/wifi.png"/ class="img-thumbnail"> -->
-
+                  
                 <i class="material-icons large icon-sizes">network_wifi</i>
                 <h6 class="mt-3" style="color:#000;">WLAN :  ${(others?.WLAN? others.WLAN :'Not Found')} </h6>
           </div>
@@ -412,14 +389,14 @@ document.getElementById('show-button').addEventListener('click',function(event){
     }
 
     
-  // clear error message 
+
 
 
 
 
     // const show error method 
 
-  const showError = (displayShow, message = "Sorry your search product not found !!") => {
+  const showError = (displayShow, message = "Sorry your phone not found !!") => {
     const showErrorMessage =   document.getElementById('show-error-message');
 
     // show more button none 
@@ -453,21 +430,6 @@ document.getElementById('show-button').addEventListener('click',function(event){
 
 
 
-  // filter whork heare 
-
-const filterFunction = () => {
-
-  // const value =  document.getElementById('show-all-phone');
-  // const convetArray = Array.from(value.children);
-  // console.log("ide value", convetArray.slice(0,5))
-  // value.innerText = '';
-  // for( const key of convetArray.slice(0,12)){
-    
-  //   //console.log(key, convetArray[key]);
-  //   value.appendChild(key);
-
-  // }
-}
 
 
 
